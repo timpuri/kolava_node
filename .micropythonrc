@@ -1,0 +1,25 @@
+{
+  "upload": {
+    "port": "/dev/tty.SLAB_USBtoUART",
+    "baud": 115200
+  },
+  "serial": {
+    "port": "/dev/tty.SLAB_USBtoUART",
+    "baud": 115200
+  },
+  "ignore": {
+    "extensions": [
+      ".micropythonrc",
+      ".stl",
+      ".scad"
+    ],
+    "directories": [
+      ".vscode",
+      "3D models"
+    ]
+  },
+  "tools": {
+    "ampy": "/usr/local/bin/ampy",
+    "rshell": "/usr/local/bin/rshell"
+  }
+}
