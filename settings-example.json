@@ -1,0 +1,65 @@
+{
+    "modules": [ {
+            "__module": "wifi",
+            "__class": "Wifi",
+            "__instance": "wifi",
+            "settings": {
+                "ssid": "My WiFi",
+                "psk": "my cryptic wifi password",
+                "timer_id": 1,
+                "timer_interval": 500
+            }
+        }, {
+            "__module": "mqtt",
+            "__class": "Mqtt",
+            "__instance": "mqtt",
+            "settings": {
+                "client_name": "soldering_station",
+                "server_ip": "192.168.1.1",
+                "server_port": 0,
+                "timer_id": 4,
+                "subscription_poll_time": 500
+            }
+        }, {
+            "__module": "led",
+            "__class": "Led",
+            "__instance": "led",
+            "settings": {
+                "pin": 22
+            },
+        }, {
+            "__module": "button",
+            "__class": "Button",
+            "__instance": "button",
+            "settings": {
+                "pin": 21,
+                "debounce_time": 100,
+                "timer_id": -1
+            }
+        }, {
+            "__module": "servo",
+            "__class": "Servo",
+            "__instance": "servo",
+            "settings": {
+                "pin": 23,
+                "frequency": 50,
+                "default_position": 0,
+                "idle_time": 2000,
+                "closed_duty": 48,
+                "open_duty": 100,
+                "timer_id": 2
+            }
+        }, {
+                "__module": "ldr",
+                "__class": "Ldr",
+                "__instance": "ldr",
+                "settings": {
+                    "pin": 34,
+                    "timer_id": 3,
+                    "attenuation": "machine.ADC.ATTN_11DB",
+                    "thresold": 800,
+                    "time_buffer": 5000
+                },
+        }
+    ]
+}
