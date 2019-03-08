@@ -27,7 +27,6 @@ class KolavaNode():
                 print("Failed to initialize module {}: {}".format(module["__module"],e))
                 if hasattr(self, module["__instance"]):
                     delattr(self, module["__instance"])
-                    pass
                 continue
 
             self.initialized_classes.append(module["__instance"])

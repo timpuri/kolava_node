@@ -20,7 +20,7 @@ class Mqtt():
             print("Error wile connecting to the mqtt server")
             sys.print_exception(e)
             
-        self.mqtt.subscribe("kolava/"+self.settings["client_name"]+"/set_valve")
+        self.mqtt.subscribe("kolava/"+self.settings["client_name"]+"/#")
         self.timer.init(mode=machine.Timer.PERIODIC, period=self.settings["subscription_poll_time"], callback=self.timer_callback)
 
         print("Connected to the mqtt server")
@@ -44,6 +44,3 @@ class Mqtt():
 
     def wifi_on_connect_callback(self,**kwargs):
         self.connect()
-
-    def servo_on_change_callback(self,**kwargs):
-        self.publish("kolava/"+self.settings["client_name"]+"/valve_position", kwargs["position"])
