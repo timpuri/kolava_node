@@ -13,10 +13,10 @@ Uses umqtt library (https://github.com/micropython/micropython-lib/tree/master/u
 ## Implemented MQTT messages
 
 **From node ->**
-kolava/node_online (client_name)
-kolava/client_name/valve_position (0-100)
-kolava/client_name/light_status (True/False)
+- kolava/node_online (client_name)
+- kolava/client_name/valve_position (0-100)
+- kolava/client_name/light_status (True/False)
 
 **To node <-**
-kolava/clinet_name/blink_led ()
-kolava/client_name/set_valve (0-100)
+- kolava/clinet_name/blink_led ()
+- kolava/client_name/set_valve (0-100)
