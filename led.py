@@ -13,6 +13,7 @@ class Led():
         self.blink_led()
 
     def blink_led(self):
+        print("Blinking led")
         for i in range(1,10):
             self.set_led(True,False)
             utime.sleep(0.2)
