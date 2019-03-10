@@ -1,7 +1,6 @@
 # kolava_node
-Ventilation node
 
-Ventilation valve control for ESP32 with MicroPython firmware.
+Ventilation valve control node for ESP32 with MicroPython firmware.
 
 Uses umqtt library (https://github.com/micropython/micropython-lib/tree/master/umqtt.simple)
 
@@ -18,5 +17,5 @@ Uses umqtt library (https://github.com/micropython/micropython-lib/tree/master/u
 - kolava/client_name/light_status (True/False)
 
 **To node <-**
-- kolava/clinet_name/blink_led ()
+- kolava/client_name/blink_led ()
 - kolava/client_name/set_valve (0-100)
