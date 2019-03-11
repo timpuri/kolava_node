@@ -1,7 +1,6 @@
 # kolava_node
-Ventilation node
 
-Ventilation valve control for ESP32 with MicroPython firmware.
+Ventilation valve control node for ESP32 with MicroPython firmware.
 
 Uses umqtt library (https://github.com/micropython/micropython-lib/tree/master/umqtt.simple)
 

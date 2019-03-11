@@ -13,7 +13,7 @@ class Button():
     def button_debounce(self, pin):
             self.debounce_timer.init(mode=machine.Timer.ONE_SHOT, period=self.settings["debounce_time"], callback=self.button_pressed)
 
-    def button_pressed(self, timer):
+    def button_pressed(self, timer=None):
         print("Button pressed")
         self.parent.call_callbacks("button_on_pressed_callback")
 

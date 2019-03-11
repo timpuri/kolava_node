@@ -38,7 +38,7 @@ class Servo():
     def on_change(self,position):
         self.parent.call_callbacks("servo_on_change_callback",position=position)
         if hasattr(self.parent, "mqtt"):
-            self.parent.mqtt.publish("kolava/"+self.settings["client_name"]+"/valve_position", position)
+            self.parent.mqtt.publish("kolava/"+self.parent.mqtt.settings["client_name"]+"/valve_position", position)
 
     def mqtt_on_connect_callback(self,**kwargs):
         self.parent.call_callbacks("servo_on_change_callback",position=self.current_position)
