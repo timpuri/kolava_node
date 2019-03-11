@@ -33,8 +33,8 @@
             "__instance": "button",
             "settings": {
                 "pin": 21,
-                "debounce_time": 100,
-                "timer_id": -1
+                "debounce_time": 500,
+                "trigger": "machine.Pin.IRQ_RISING"
             }
         }, {
             "__module": "servo",

@@ -10,15 +10,13 @@ class Led():
         
         self.led = machine.Pin(self.settings["pin"], machine.Pin.OUT)
         
-        self.blink_led()
-
     def blink_led(self):
         print("Blinking led")
         for i in range(1,10):
             self.set_led(True,False)
-            utime.sleep(0.2)
+            utime.sleep(0.1)
             self.set_led(False,False)
-            utime.sleep(0.05)
+            utime.sleep(0.1)
             
         self.set_led(self.current_status,False)
 
@@ -37,3 +35,6 @@ class Led():
     def mqtt_on_message_received(self,**kwargs):
         if kwargs["topic"] == "blink_led":
             self.blink_led()
+            
+    def mqtt_on_connect_callback(self,**kwargs):
+        self.blink_led()

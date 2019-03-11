@@ -11,7 +11,7 @@ class Servo():
         self.wakeup()
         self.set_position(self.current_position)
 
-    def sleep(self, timer):
+    def sleep(self, timer=None):
         print("Setting servo to sleep")
         self.pwm.deinit()
 
