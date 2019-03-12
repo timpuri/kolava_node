@@ -39,7 +39,7 @@ class Ldr():
     def on_value_changed(self, new_value):
         print("Ldr status changed to {}".format(new_value))
         if hasattr(self.parent, "mqtt"):
-            self.parent.mqtt.publish("kolava/"+self.parent.mqtt.settings["client_name"]+"/light_status", new_value)
+            self.parent.mqtt.publish("kolava/"+self.parent.mqtt.settings["client_name"]+"/light_status", new_value, True)
 
     def mqtt_on_connect_callback(self,**kwargs):
         self.on_value_changed(self.last_value)
