@@ -19,14 +19,15 @@ class Mqtt():
         except OSError as e:
             print("Error wile connecting to the mqtt server")
             sys.print_exception(e)
-            #return False
+            self.timer.init(mode=machine.Timer.ONE_SHOT, period=self.settings["subscription_poll_time"], callback=self.reconnect)
+            return False
             
         self.mqtt.subscribe("kolava/"+self.settings["client_name"]+"/#")
         self.timer.init(mode=machine.Timer.PERIODIC, period=self.settings["subscription_poll_time"], callback=self.timer_callback)
         print("Connected to the mqtt server")
         self.parent.call_callbacks("mqtt_on_connect_callback")
 
-    def reconnect(self):
+    def reconnect(self, timer=None):
             print("Connection lost to the Mqtt server, reconnecting...")
             self.mqtt.sock.close()
             self.connect()
