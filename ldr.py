@@ -17,7 +17,7 @@ class Ldr():
         #print("Ldr read status value: {}".format(value))
         return True if value > self.settings["thresold"] else False
 
-    def check_if_changed(self,timer):
+    def check_if_changed(self):
         status_now = self.read_status()
         if status_now != self.last_value:
             if self.value_changed == True:
@@ -42,4 +42,4 @@ class Ldr():
 
     def period_on_period_callback(self,**kwargs):
         if divmod(kwargs["period_no"],int(self.settings["period_time"]))[1] == 0:
-            self.check_if_changed(None)
+            self.check_if_changed()
