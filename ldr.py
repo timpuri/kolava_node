@@ -1,4 +1,5 @@
 import machine
+import utime
 
 class Ldr():
     def __init__(self, parent, settings):
@@ -10,15 +11,13 @@ class Ldr():
         self.ldr = machine.ADC(machine.Pin(self.settings["pin"]))
         self.ldr.atten(eval(self.settings["attenuation"]))
         self.last_value = self.read_status()
-        self.timer = machine.Timer(self.settings["timer_id"])
-        self.timer_start()
 
     def read_status(self):
         value = self.ldr.read()
         #print("Ldr read status value: {}".format(value))
         return True if value > self.settings["thresold"] else False
 
-    def timer_callback(self,timer):
+    def check_if_changed(self,timer):
         status_now = self.read_status()
         if status_now != self.last_value:
             if self.value_changed == True:
@@ -26,15 +25,12 @@ class Ldr():
                 self.value_changed = False
                 self.last_value = status_now
             else:
-                print("Verifying light status change after time_buffer..")
+                print("Verifying light status change after recheck_time..")
                 self.value_changed = True
+                utime.sleep_ms(self.settings["recheck_time"])
+                self.check_if_changed()
         else:
             self.value_changed = False
-
-        self.timer_start()
-
-    def timer_start(self):
-        self.timer.init(mode=machine.Timer.ONE_SHOT, period=self.settings["time_buffer"], callback=self.timer_callback)
 
     def on_value_changed(self, new_value):
         print("Ldr status changed to {}".format(new_value))
@@ -44,5 +40,6 @@ class Ldr():
     def mqtt_on_connect_callback(self,**kwargs):
         self.on_value_changed(self.last_value)
 
-    def __del__(self):
-        self.timer.deinit()
+    def period_on_period_callback(self,**kwargs):
+        if divmod(kwargs["period_no"],int(self.settings["period_time"]))[1] == 0:
+            self.check_if_changed(None)
