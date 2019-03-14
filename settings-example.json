@@ -45,8 +45,8 @@
                 "frequency": 50,
                 "default_position": 0,
                 "idle_time": 2000,
-                "closed_duty": 48,
-                "open_duty": 100,
+                "closed_duty": 95,
+                "open_duty":48,
                 "timer_id": 2
             }
         }, {
@@ -55,11 +55,18 @@
                 "__instance": "ldr",
                 "settings": {
                     "pin": 34,
-                    "timer_id": 3,
                     "attenuation": "machine.ADC.ATTN_11DB",
-                    "thresold": 800,
-                    "time_buffer": 5000
-                },
+                    "thresold": 400,
+                    "period_time": 1,
+                    "recheck_time": 500
+                }
+        }, {
+            "__module": "period",
+            "__class": "Period",
+            "__instance": "period",
+            "settings": {
+                "timer_id": 3,
+            }
         }
     ]
 }
