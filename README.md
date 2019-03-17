@@ -15,6 +15,7 @@ Uses umqtt library (https://github.com/micropython/micropython-lib/tree/master/u
 - kolava/node_online (client_name)
 - kolava/client_name/valve_position (0-100)
 - kolava/client_name/light_status (True/False)
+- kolava/client_name/power_status (True/False)
 
 **To node <-**
 - kolava/client_name/blink_led ()
