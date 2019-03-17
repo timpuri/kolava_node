@@ -19,7 +19,7 @@ class DigitalOutput(Module):
             default_state = 0
         self.output = machine.Pin(self.settings["pin"],machine.Pin.OUT,value=default_state)
 
-    def change_status(self,status):
+    def set_status(self,status):
         self.output.value(int(status))
         self.current_status = status
 

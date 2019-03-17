@@ -20,7 +20,7 @@ class Led(DigitalOutput):
         self.set_led(self.current_status,False)
 
     def set_led(self, value, call_callback = True):
-        super().change_status(value)
+        super().set_status(value)
         if call_callback:
             self.parent.call_callbacks("led_on_change_callback",value=value)
 

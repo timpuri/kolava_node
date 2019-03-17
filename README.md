@@ -19,3 +19,4 @@ Uses umqtt library (https://github.com/micropython/micropython-lib/tree/master/u
 **To node <-**
 - kolava/client_name/blink_led ()
 - kolava/client_name/set_valve (0-100)
+- kolava/client_name/set_power (True/False)
