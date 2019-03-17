@@ -1,14 +1,13 @@
+from __main__ import Module
 import network
 import machine
 
-class Wifi():
-    def __init__(self, parent, settings):
+class Wifi(Module):
+    def __init__(self, *args, **kwargs):
         print("Initializing WiFi")
-        self.parent = parent
-        self.settings = settings
-
+        super().__init__(*args, **kwargs)
+        
         self.nic = network.WLAN(network.STA_IF)
-
         self.timer = machine.Timer(self.settings["timer_id"])
 
     def start_connection_checker(self):

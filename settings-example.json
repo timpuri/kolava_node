@@ -26,7 +26,7 @@
             "__instance": "led",
             "settings": {
                 "pin": 22
-            },
+            }
         }, {
             "__module": "button",
             "__class": "Button",
@@ -50,22 +50,30 @@
                 "timer_id": 2
             }
         }, {
-                "__module": "ldr",
-                "__class": "Ldr",
-                "__instance": "ldr",
-                "settings": {
-                    "pin": 34,
-                    "attenuation": "machine.ADC.ATTN_11DB",
-                    "thresold": 400,
-                    "period_time": 1,
-                    "recheck_time": 500
-                }
+            "__module": "ldr",
+            "__class": "Ldr",
+            "__instance": "ldr",
+            "settings": {
+                "pin": 34,
+                "attenuation": "machine.ADC.ATTN_11DB",
+                "thresold": 400,
+                "period_time": 1,
+                "recheck_time": 500
+            }
         }, {
             "__module": "period",
             "__class": "Period",
             "__instance": "period",
             "settings": {
-                "timer_id": 3,
+                "timer_id": 3
+            }
+        }, {
+            "__module": "relay",
+            "__class": "Relay",
+            "__instance": "relay",
+            "settings": {
+                "pin": 19,
+                "default_state": 0
             }
         }
     ]

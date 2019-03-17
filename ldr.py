@@ -1,14 +1,14 @@
+from __main__ import Adc
 import machine
 import utime
 
-class Ldr():
-    def __init__(self, parent, settings):
+class Ldr(Adc):
+    def __init__(self, *args, **kwargs):
         print("Initializing LDR sensor")
-        self.settings = settings
-        self.parent = parent
+        super().__init__(*args, **kwargs)
 
         self.value_changed = True
-        self.ldr = machine.ADC(machine.Pin(self.settings["pin"]))
+        
         self.ldr.atten(eval(self.settings["attenuation"]))
         self.last_value = self.read_status()
 

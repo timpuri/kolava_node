@@ -1,11 +1,11 @@
+from __main__ import Module
 import machine
 import utime
 
-class Button():
-    def __init__(self, parent, settings):
+class Button(Module):
+    def __init__(self, *args, **kwargs):
         print("Initializing button")
-        self.settings = settings
-        self.parent = parent
+        super().__init__(*args, **kwargs)
 
         self.button = machine.Pin(self.settings["pin"], machine.Pin.IN)
         self.button.irq(trigger=eval(self.settings["trigger"]), handler=self.button_debounce)

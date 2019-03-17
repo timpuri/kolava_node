@@ -1,14 +1,13 @@
+from __main__ import DigitalOutput
 import utime
 import machine
 
-class Led():
-    def __init__(self, parent, settings):
+class Led(DigitalOutput):
+    def __init__(self, *args, **kwargs):
         print("Initializing Led")
-        self.settings = settings
-        self.parent = parent
-        self.current_status = False
-        
-        self.led = machine.Pin(self.settings["pin"], machine.Pin.OUT)
+        super().__init__(*args, **kwargs)
+
+        self.led = self.output
         
     def blink_led(self):
         print("Blinking led")
@@ -21,8 +20,7 @@ class Led():
         self.set_led(self.current_status,False)
 
     def set_led(self, value, call_callback = True):
-        self.led.value(int(value))
-        self.current_status = value
+        super().change_status(value)
         if call_callback:
             self.parent.call_callbacks("led_on_change_callback",value=value)
 

@@ -1,12 +1,12 @@
+from __main__ import Module
 from umqtt.simple import MQTTClient
 import sys
 import machine
 
-class Mqtt():
-    def __init__(self, parent, settings):
+class Mqtt(Module):
+    def __init__(self, *args, **kwargs):
         print("Initializing MQTT Client")
-        self.settings = settings
-        self.parent = parent
+        super().__init__(*args, **kwargs)
 
         self.timer = machine.Timer(self.settings["timer_id"])
 

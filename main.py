@@ -1,7 +1,55 @@
 import sys
 from settings import Settings
+import machine
 
+# Basic module
+class Module():
+    def __init__(self, *args, **kwargs):
+        self.parent = kwargs["parent"]
+        self.settings = kwargs["settings"]
 
+# Digital output
+class DigitalOutput(Module):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.current_status = None
+        if "default_state" in self.settings:
+            default_state = int(self.settings["default_state"])
+        else:
+            default_state = 0
+        self.output = machine.Pin(self.settings["pin"],machine.Pin.OUT,value=default_state)
+
+    def change_status(self,status):
+        self.output.value(int(status))
+        self.current_status = status
+
+    def get_status(self):
+        self.current_status = self.output.value()
+        return self.current_status
+
+# PWM output
+class Pwm(Module):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def wakeup(self):
+        self.pin = machine.Pin(self.settings["pin"])
+        self.pwm = machine.PWM(self.pin,freq=self.settings["frequency"])
+
+    def sleep(self, timer=None):
+        print("Setting pwm to sleep")
+        self.pwm.deinit()
+
+# Analog input
+class Adc(Module):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.adc = machine.ADC(machine.Pin(self.settings["pin"]))
+        
+        if hasattr(self.settings["attenuatiossssssn"]):
+            self.adc.atten(eval(self.settings["attenuation"]))
+
+# Main program
 class KolavaNode():
     def __init__(self):
         self.s = Settings()
@@ -21,7 +69,7 @@ class KolavaNode():
 
             try:
                 module["__class__"] = globals()[module["__class"]]
-                setattr(self,module["__instance"],module["__class__"](self,module["settings"]))                        
+                setattr(self,module["__instance"],module["__class__"](parent=self,settings=module["settings"]))                        
             except Exception as e:
                 sys.print_exception(e)
                 print("Failed to initialize module {}: {}".format(module["__module"],e))

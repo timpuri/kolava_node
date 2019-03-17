@@ -1,23 +1,15 @@
+from __main__ import Pwm
 import machine
 
-class Servo():
-    def __init__(self, parent, settings):
+class Servo(Pwm):
+    def __init__(self, *args, **kwargs):
         print("Initializing servo")
-        self.settings = settings
-        self.parent = parent
-        
+        super().__init__(*args, **kwargs)
+
         self.current_position = self.settings["default_position"]
         self.timer = machine.Timer(self.settings["timer_id"])
         self.wakeup()
         self.set_position(self.current_position)
-
-    def sleep(self, timer=None):
-        print("Setting servo to sleep")
-        self.pwm.deinit()
-
-    def wakeup(self):
-        self.pin = machine.Pin(self.settings["pin"])
-        self.pwm = machine.PWM(self.pin,freq=self.settings["frequency"])
 
     def set_position(self,position):
         print("Setting servo position to {}".format(position))
