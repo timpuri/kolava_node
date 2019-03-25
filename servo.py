@@ -41,9 +41,15 @@ class Servo(Pwm):
 
     def button_on_pressed_callback(self,**kwargs):
         if self.current_position > 1:
-                self.set_position(0)
+            self.set_position(0)
         else:
             self.set_position(100)
+
+    def button_period_on_change_callback(self,**kwargs):
+        if kwargs["state"] == 1 and self.current_position == 0:
+            self.set_position(100)
+        elif self.current_position > 0:
+            self.set_position(0)
 
     def __del__(self):
         self.timer.deinit()

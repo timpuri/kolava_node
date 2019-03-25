@@ -68,6 +68,14 @@
                 "timer_id": 3
             }
         }, {
+            "__module": "button_period",
+            "__class": "ButtonPeriod",
+            "__instance": "button_period",
+            "settings": {
+                "pin": 19,
+                "period_time": 1
+            }
+        }, {
             "__module": "relay",
             "__class": "Relay",
             "__instance": "relay",

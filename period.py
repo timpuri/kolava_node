@@ -10,7 +10,7 @@ class Period(Module):
         self.timer = machine.Timer(self.settings["timer_id"])
 
     def run_period(self,timer=None):
-        if self.period_no > 999:
+        if self.period_no > 86400:
             self.period_no = 0
 
         self.period_no += 1
@@ -23,13 +23,3 @@ class Period(Module):
         print("Cleaning Period class instance")
         self.timer.init(callback=None)
         self.timer.deinit()
-
-
-#, {
-#            "__module": "period",
-#            "__class": "Period",
-#            "__instance": "period",
-#            "settings": {
-#                "timer_id": 3
-#            }
-#        }  
