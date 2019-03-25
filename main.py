@@ -46,7 +46,7 @@ class Adc(Module):
         super().__init__(*args, **kwargs)
         self.adc = machine.ADC(machine.Pin(self.settings["pin"]))
         
-        if hasattr(self.settings["attenuatiossssssn"]):
+        if hasattr(self.settings, "attenuation"):
             self.adc.atten(eval(self.settings["attenuation"]))
 
 # Main program

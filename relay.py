@@ -8,8 +8,6 @@ class Relay(DigitalOutput):
 
     def set_status(self,status):
         super().set_status(status)
-        if hasattr(self.parent, "mqtt"):
-            self.parent.mqtt.publish("kolava/"+self.parent.mqtt.settings["client_name"]+"/power_status", str(bool(status)), True)
 
     def mqtt_on_message_received(self,**kwargs):
         if kwargs["topic"] == "set_power":

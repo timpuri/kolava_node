@@ -9,11 +9,11 @@ class Ldr(Adc):
 
         self.value_changed = True
         
-        self.ldr.atten(eval(self.settings["attenuation"]))
+        self.adc.atten(eval(self.settings["attenuation"]))
         self.last_value = self.read_status()
 
     def read_status(self):
-        value = self.ldr.read()
+        value = self.adc.read()
         #print("Ldr read status value: {}".format(value))
         return True if value > self.settings["thresold"] else False
 
