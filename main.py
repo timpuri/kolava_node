@@ -1,6 +1,8 @@
 import sys
-from settings import Settings
 import machine
+from settings import Settings
+import uasyncio as asyncio
+
 
 # Basic module
 class Module():
@@ -82,6 +84,9 @@ class KolavaNode():
 
         self.call_callbacks("after_init_callback")
 
+        loop = asyncio.get_event_loop()
+        loop.run_forever()
+        
     def call_callbacks(self,callback_name, **kwargs):
         print("Calling callbacks: {}".format(callback_name))
         for instance in self.initialized_classes:

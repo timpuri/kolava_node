@@ -30,6 +30,13 @@ class Led(DigitalOutput):
         else:
             self.set_led(False)
 
+    def button_on_pressed_callback(self,**kwargs):
+        if "toggle_from_button" in self.settings:
+            if self.led.value() == 1:
+                self.set_led(False)
+            else:
+                self.set_led(True)
+
     def mqtt_on_message_received(self,**kwargs):
         if kwargs["topic"] == "blink_led":
             self.blink_led()
