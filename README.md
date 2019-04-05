@@ -3,12 +3,18 @@
 Ventilation valve control node for ESP32 with MicroPython firmware.
 
 ## External libraries
+
 umqtt https://github.com/micropython/micropython-lib/tree/master/umqtt.simple
+
 aswitch https://github.com/peterhinch/micropython-async
+
+
+## Install
 
 1. Flash micropython firmware to your ESP32 (http://micropython.org/)
 2. Rename settings-example.json to settings.json and modify at least wifi and mqtt server settings.
 3. Upload files to ESP32 with adafruit-ampy (https://learn.adafruit.com/micropython-basics-load-files-and-run-code/install-ampy)
+4. Run install.py with ampy. (ie. ampy -p /dev/tty.SLAB_USBtoUART run install.py)
 
 
 ## Implemented MQTT messages
