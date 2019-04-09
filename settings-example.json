@@ -83,6 +83,16 @@
                 "pin": 19,
                 "default_state": 0
             }
+        }, {
+            "__module": "oled",
+            "__class": "Oled",
+            "__instance": "oled",
+            "settings": {
+                "scl_pin": 22,
+                "sda_pin": 21,
+                "width": 128,
+                "height": 64
+            }
         }
     ]
 }
