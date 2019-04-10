@@ -7,16 +7,17 @@ class Oled(Module):
     def __init__(self, *args, **kwargs):
         print("Initializing SSD1306 OLED Display")
         super().__init__(*args, **kwargs)
+        self.text_buffer=self.empty_text_buffer()
         i2c = machine.I2C(-1, machine.Pin(self.settings["scl_pin"]), machine.Pin(self.settings["sda_pin"]))
         self.oled = ssd1306.SSD1306_I2C(self.settings["width"], self.settings["height"], i2c)
         self.startup_screen()
-        self.text_buffer=self.empty_text_buffer()
+        
 
     def empty_text_buffer(self):
-        if self.settings["height"] >= 64:
-            return ("","","","")
+        if self.settings["height"] > 63:
+            return ["","","","","",""]
         else:
-            return ("","")
+            return ["","",""]
 
     def startup_screen(self):
         if hasattr(self.parent, "mqtt"):
@@ -41,7 +42,7 @@ class Oled(Module):
             self.text_buffer[len(self.text_buffer)-1] = row
         else:
             for i,r in enumerate(self.text_buffer):
-                if i == len(self.text_buffer)-1:
+                if i < len(self.text_buffer)-1:
                     self.text_buffer[i] = self.text_buffer[i+1]
                 else:
                     self.text_buffer[i] = row
@@ -59,8 +60,11 @@ class Oled(Module):
             y=y+10
         self.oled.show()
 
+    def display_add_row_callback(self,row=""):
+        self.add_text_row(row)
+
     def after_init_callback(self,*args,**kwargs):
-        self.add_text_row("Modules initialized")
+        self.add_text_row("Modules loaded")
 
     def wifi_on_connect_callback(self,**kwargs):
         self.add_text_row("WiFi connected")
@@ -74,5 +78,5 @@ class Oled(Module):
 
         if kwargs["topic"] == "set_screen_text":
             self.clear_buffer()
-            for row in str(kwargs["msg"]).split(";",3):
+            for row in str(kwargs["msg"]).split(";"):
                 self.add_text_row(row)

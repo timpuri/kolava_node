@@ -93,6 +93,18 @@
                 "width": 128,
                 "height": 64
             }
+        }, {
+            "__module": "rotaryenc",
+            "__class": "RotaryEnc",
+            "__instance": "rotaryenc",
+            "settings": {
+                "clk_pin": 23,
+                "dt_pin": 19,
+                "max_val": 100,
+                "min_val": 0,
+                "reverse": true,
+                "range_mode": "RotaryIRQ.RANGE_BOUNDED"
+            }
         }
     ]
 }

@@ -82,10 +82,9 @@ class KolavaNode():
             self.initialized_classes.append(module["__instance"])
             print("Successfully initialized class {}".format(module["__class"]))
 
-        self.call_callbacks("after_init_callback")
-
-        loop = asyncio.get_event_loop()
-        loop.run_forever()
+        self.loop = asyncio.get_event_loop()
+        self.call_callbacks("after_init_callback")        
+        self.loop.run_forever()
         
     def call_callbacks(self,callback_name, **kwargs):
         print("Calling callbacks: {}".format(callback_name))
