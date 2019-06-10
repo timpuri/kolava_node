@@ -105,6 +105,14 @@
                 "reverse": true,
                 "range_mode": "RotaryIRQ.RANGE_BOUNDED"
             }
+        }, {
+            "__module": "climate",
+            "__class": "Climate",
+            "__instance": "climate",
+            "settings": {
+                "pin": 32,
+                "period_time": 900
+            }
         }
     ]
 }
