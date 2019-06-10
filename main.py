@@ -2,7 +2,7 @@ import sys
 import machine
 from settings import Settings
 import uasyncio as asyncio
-
+import time
 
 # Basic module
 class Module():
@@ -94,5 +94,10 @@ class KolavaNode():
                 print("Calling callback {}.{}".format(instance,callback_name))
                 print(kwargs)
                 cb(**kwargs)
+
+
+print("starting in 5 seconds")
+time.sleep(5)
+print("starting now")
 
 kolavanode = KolavaNode()
