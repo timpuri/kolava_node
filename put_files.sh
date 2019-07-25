@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ampy -p /dev/tty.SLAB_USBtoUART put settings-example.json settings.json
+ampy -p /dev/tty.SLAB_USBtoUART put settings.json
 ampy -p /dev/tty.SLAB_USBtoUART put settings.py
 ampy -p /dev/tty.SLAB_USBtoUART put wifi.py
 ampy -p /dev/tty.SLAB_USBtoUART run install.py

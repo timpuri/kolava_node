@@ -23,6 +23,13 @@ class Installer():
             print("asyncio package not installed, installing")
             import upip
             upip.install(['micropython-uasyncio'])
+    
+        try:
+            from hcsr04 import HCSR04
+        except ImportError:
+            print("hcsr04 package not installed, installing")
+            import upip
+            upip.install(['mPython-hcsr04'])
 
     def call_callbacks(self, callback_name, **kwargs):
         if hasattr(self,callback_name):

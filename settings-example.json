@@ -113,6 +113,15 @@
                 "pin": 32,
                 "period_time": 900
             }
-        }
+        }, {
+                "__module": "distance",
+                "__class": "Distance",
+                "__instance": "distance",
+                "settings": {
+                    "trigger_pin": 2,
+                    "echo_pin": 4,
+                    "period_time": 3600
+                },
+            }
     ]
 }
