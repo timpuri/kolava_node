@@ -19,4 +19,5 @@ ampy -p /dev/tty.SLAB_USBtoUART put period.py
 ampy -p /dev/tty.SLAB_USBtoUART put relay.py
 ampy -p /dev/tty.SLAB_USBtoUART put servo.py
 ampy -p /dev/tty.SLAB_USBtoUART put switch.py
+ampy -p /dev/tty.SLAB_USBtoUART put temperature.py
 ampy -p /dev/tty.SLAB_USBtoUART put main.py
