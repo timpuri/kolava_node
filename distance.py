@@ -1,6 +1,8 @@
 from __main__ import Module
 import machine
+from time import sleep
 from hcsr04 import HCSR04
+
 
 class Distance(Module):
     def __init__(self, *args, **kwargs):
@@ -9,7 +11,14 @@ class Distance(Module):
         self.sensor = HCSR04(trigger_pin=self.settings["trigger_pin"], echo_pin=self.settings["echo_pin"])
 
     def distance(self):
-        return self.sensor.distance_cm()
+        calculate_times = 10
+        total = 0.0
+        for i in range(1,calculate_times):
+            total += self.sensor.distance_cm()
+            sleep(0.07)
+
+        avg = total / calculate_times
+        return avg
 
     def publish_distance(self):
         distance = self.distance()
